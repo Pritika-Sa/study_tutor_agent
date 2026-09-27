@@ -1,0 +1,44 @@
+# --- Phase 2: backend foundation, auth ---
+fastapi>=0.115.6
+uvicorn[standard]>=0.34.0
+sqlalchemy>=2.0.36
+pydantic>=2.10.4
+pydantic-settings>=2.7.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+# Pinned: passlib 1.7.4's internal bcrypt self-test crashes on bcrypt>=4.1
+# (see README "Known Issues" -- ValueError on passlib's >72-byte self-check).
+# 4.0.1 is the newest release that stays compatible with passlib 1.7.4.
+bcrypt==4.0.1
+python-multipart>=0.0.9
+email-validator>=2.2.0
+pytest>=8.3.4
+httpx>=0.28.1
+
+# --- Phase 3: RAG pipeline ---
+# Deliberately NOT depending on the bare `langchain` umbrella package: this
+# project's code only imports the specific sub-packages below (loaders,
+# splitters, HuggingFace embeddings, Chroma integration). Installing bare
+# `langchain` would transitively pull in `langgraph`, which is Phase 5+
+# scope and not used anywhere in Phase 3.
+langchain-community>=0.4.2      # PyPDFLoader
+langchain-core>=1.6.5           # Document type (shared by all rag/ modules)
+langchain-text-splitters>=1.1.2 # RecursiveCharacterTextSplitter
+langchain-huggingface>=1.2.2    # HuggingFaceEmbeddings (local sentence-transformers)
+langchain-chroma>=1.1.0         # Chroma vector store integration
+chromadb>=1.5.9                 # persistent vector database
+sentence-transformers>=6.1.0    # backing model runtime for HuggingFaceEmbeddings
+pypdf>=6.19.0                   # backing PDF parser for PyPDFLoader
+
+# --- Phase 4: custom MCP server + client ---
+mcp[cli]>=2.2.0
+
+# --- Phase 5: LangGraph multi-agent orchestration ---
+# `langgraph` itself (not the bare `langchain` package -- see the Phase 3
+# note above) is genuinely needed starting here.
+langgraph>=1.2.12
+langgraph-checkpoint-sqlite>=3.1.1   # SqliteSaver-equivalent checkpointer -- see graph/workflow.py for the exact current API used
+
+# --- Phase 6: ReAct + Tavily ---
+groq>=1.7.0
+tavily-python>=0.8.4

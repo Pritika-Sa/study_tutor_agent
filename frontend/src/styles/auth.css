@@ -1,0 +1,212 @@
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.auth-panel {
+  background: var(--primary);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-xl) 64px;
+}
+
+.auth-panel__mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-lg);
+}
+
+.auth-panel__title {
+  font-size: 2rem;
+  color: #ffffff;
+  max-width: 380px;
+  margin-bottom: var(--space-sm);
+}
+
+.auth-panel__tagline {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 360px;
+  font-size: 1rem;
+  margin-bottom: var(--space-lg);
+}
+
+.auth-panel__points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 360px;
+}
+
+.auth-panel__points li {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.9rem;
+  padding-left: 22px;
+  position: relative;
+}
+
+.auth-panel__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.auth-form-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  background: var(--bg);
+}
+
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xl) var(--space-lg);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card__title {
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.auth-card__subtitle {
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+  font-size: 0.9rem;
+}
+
+.auth-card__success {
+  background: var(--success-bg);
+  color: var(--success);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: 0.88rem;
+}
+
+.auth-card__footer {
+  text-align: center;
+  margin-top: var(--space-md);
+  margin-bottom: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* ---------------------------------------------------------------------
+   Track selection
+--------------------------------------------------------------------- */
+.track-selection__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.track-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.track-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.track-card--active {
+  border-color: var(--primary);
+}
+
+.track-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: var(--space-md);
+}
+
+.track-card p {
+  margin-bottom: var(--space-md);
+}
+
+.track-card__subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.subject-pill {
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-secondary);
+  border-radius: var(--radius-pill);
+  padding: 7px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.83rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.subject-pill:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.subject-pill--active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-contrast);
+}
+
+/* ---------------------------------------------------------------------
+   Responsive
+--------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form-column {
+    padding: var(--space-md);
+  }
+
+  .auth-card {
+    padding: var(--space-lg) var(--space-md);
+  }
+}

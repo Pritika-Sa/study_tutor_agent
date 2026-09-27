@@ -1,0 +1,44 @@
+# Environment secrets
+.env
+backend/.env
+frontend/.env
+
+# SQLite databases (including WAL journal side-files -- found left behind
+# after a live server run that wasn't shut down via a clean WAL checkpoint)
+*.db
+*.db-shm
+*.db-wal
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+backend/.venv/
+venv/
+
+# RAG vector store (rebuilt by scripts/ingest_documents.py; Chroma creates
+# this directory automatically, so it does not need to be pre-created)
+data/chroma/
+
+# Downloaded study material PDFs (NCERT ZIPs' extracted chapters, and the
+# open-educational Placement textbooks) -- large binaries that are fully
+# reproducible via `python scripts/download_materials.py --all`, so they are
+# not committed. Licensing terms vary per source (see README "Automated
+# Material Acquisition"); re-download instead of committing.
+data/neet/*/*.pdf
+data/placement/*/*.pdf
+
+# Test artifacts
+.pytest_cache/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
